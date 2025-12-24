@@ -1,0 +1,79 @@
+<div class="add-todo-card">
+  <div class="card-header bg-success text-white">
+    <h4 class="mb-0">
+      <i class="bi bi-plus-circle me-2"></i>Add New Task
+    </h4>
+  </div>
+
+  <div class="card-body">
+    <!-- Success Message -->
+    <div *ngIf="showSuccess" class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+      <i class="bi bi-check-circle-fill me-2" style="font-size: 1.2rem;"></i>
+      <div class="flex-grow-1">
+        <strong class="me-2">Success!</strong>
+        Task added to your list.
+      </div>
+      <button type="button" class="btn-close" (click)="showSuccess = false" aria-label="Close"></button>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+      <i class="bi bi-exclamation-circle-fill me-2" style="font-size: 1.2rem;"></i>
+      <div class="flex-grow-1">{{error}}</div>
+      <button type="button" class="btn-close" (click)="error = ''" aria-label="Close"></button>
+    </div>
+
+    <!-- Form -->
+    <div class="mb-4">
+      <label for="todoText" class="form-label">
+        <i class="bi bi-pencil-square"></i>
+        What do you need to do?
+      </label>
+      <textarea
+        id="todoText"
+        class="form-control"
+        [(ngModel)]="newTodoText"
+        (keydown)="onKeyPress($event)"
+        placeholder="Enter your task here... Be specific and clear!"
+        rows="3"
+        [disabled]="isSubmitting"
+      ></textarea>
+      <div class="form-text d-flex align-items-center mt-2">
+        <i class="bi bi-info-circle me-1"></i>
+        Press <kbd class="ms-1 me-1">Enter</kbd> to add or <kbd class="ms-1">Shift + Enter</kbd> for new line
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="form-text d-flex align-items-center">
+        <i class="bi bi-lightbulb me-2 text-warning"></i>
+        <span>Keep tasks actionable and time-bound</span>
+      </div>
+      <div class="d-flex gap-2">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="newTodoText = ''"
+          [disabled]="!newTodoText.trim() || isSubmitting"
+        >
+          <i class="bi bi-x-circle me-1"></i>Clear
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="addTodo()"
+          [disabled]="!newTodoText.trim() || isSubmitting"
+        >
+          <span *ngIf="!isSubmitting">
+            <i class="bi bi-plus-circle me-1"></i>Add Task
+          </span>
+          <span *ngIf="isSubmitting">
+            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+            Adding...
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

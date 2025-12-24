@@ -1,0 +1,270 @@
+:host {
+  display: block;
+}
+
+/* Card styling */
+.todo-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.todo-card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Card header */
+.card-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  padding: 1.5rem;
+}
+
+.card-header h3 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Badge styling */
+.badge {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+/* Card body */
+.card-body {
+  padding: 2rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Loading state */
+.loading-container {
+  padding: 3rem 1rem;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25em;
+}
+
+/* Error state */
+.alert-danger {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border: none;
+  border-radius: 12px;
+  color: #7f1d1d;
+}
+
+/* Empty state */
+.empty-state {
+  padding: 4rem 1rem;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  opacity: 0.5;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state h5 {
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: #718096;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Todo list */
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Todo item */
+.todo-item {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.todo-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.todo-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--success-color));
+  border-radius: 4px 0 0 4px;
+}
+
+/* Todo content */
+.todo-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+}
+
+.todo-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 2px;
+  box-shadow: 0 2px 4px rgba(67, 97, 238, 0.2);
+}
+
+.todo-details {
+  flex: 1;
+}
+
+.todo-text {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #2d3748;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.todo-date {
+  font-size: 0.85rem;
+  color: #718096;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Todo ID */
+.todo-id {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  background: #f7fafc;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* Animation for new items */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo-item {
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+/* Stagger animation for multiple items */
+.todo-item:nth-child(1) { animation-delay: 0.1s; }
+.todo-item:nth-child(2) { animation-delay: 0.2s; }
+.todo-item:nth-child(3) { animation-delay: 0.3s; }
+.todo-item:nth-child(4) { animation-delay: 0.4s; }
+.todo-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Status indicator */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Scrollbar for todo list */
+.card-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  border-radius: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .todo-item {
+    padding: 1rem;
+  }
+
+  .todo-content {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .todo-icon {
+    align-self: flex-start;
+  }
+
+  .todo-id {
+    margin-top: 0.5rem;
+  }
+
+  .card-header h3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* Empty state animation */
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.empty-state i {
+  animation: floatIcon 3s ease-in-out infinite;
+}
