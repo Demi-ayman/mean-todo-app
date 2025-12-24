@@ -1,4 +1,4 @@
-MEAN Stack Todo App
+# MEAN Stack Todo App
 A simple todo application built with the MEAN stack (MongoDB, Express.js, Angular, Node.js).
 
 Live Demo
